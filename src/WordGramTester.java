@@ -7,6 +7,7 @@ public class WordGramTester {
 
 	private WordGram[] myGrams;
 
+
 	@Before
 	public void setUp(){
 		String str = "aa bb cc aa bb cc aa bb cc aa bb dd ee ff gg hh ii jj";
@@ -65,5 +66,23 @@ public class WordGramTester {
 		assertEquals("fail super",a.compareTo(a2) > 0, true);
 		assertEquals("fail empty",b2.compareTo(a2) < 0, true);
 	}
-
-}
+	@Test
+	public void testToString(){
+		String a = "{aa,bb,cc}";
+		String b = "{bb,cc,aa}";
+		String c = "{cc,aa,bb}";
+		String d = "{ee,ff,gg}";
+		assertEquals("eq fail on 0,a",myGrams[0].toString().equals(a),true);
+		assertEquals("eq fail on 1,b",myGrams[1].toString().equals(b),true);
+		assertEquals("eq fail on 2,c",myGrams[2].toString().equals(c),true);
+		assertEquals("eq fail on 12,d",myGrams[12].toString().equals(d),true);
+	}
+	@Test
+	public void testShiftAdd(){
+		assertEquals("eq fail on 1,0",myGrams[1].toString().equals(myGrams[0].shiftAdd("aa").toString()),true);
+		assertEquals("eq fail on 2,1",myGrams[2].toString().equals(myGrams[1].shiftAdd("bb").toString()),true);
+		assertEquals("eq fail on 3,2",myGrams[3].toString().equals(myGrams[2].shiftAdd("cc").toString()),true);
+		assertEquals("eq fail on 4,3",myGrams[4].toString().equals(myGrams[3].shiftAdd("aa").toString()),true);
+	}
+		
+	}
